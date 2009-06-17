@@ -1,0 +1,7 @@
+From version 0.5 to 0.6: (June 17 2009)
+
+	Removed arpack++ library, and instead wrote a custom
+	wrapper class in the folder src/arpack. This is based
+	on arpack++, but is much simpler.
+
+	

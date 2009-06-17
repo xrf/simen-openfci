@@ -1,0 +1,198 @@
+README FOR OPENFCI VERSION 0.5
+==============================
+
+DATE: Sun. Oct. 12. 2008
+AUTHOR: Simen Kvaal
+
+
+These notes give an introduction to compiling and installing OpenFCI
+on your system. See also INSTALL, CHANGELOG and NEWS, if not empty.
+
+For troubleshooting, questions and similar, the author can be
+contacted via email, at
+
+    simen.kvaal@gmail.com.
+
+I will try to answer and resolve questions as best as I can.
+
+
+Installation procedure
+**********************
+
+The installation procedure in the very simplest case consists of the
+following shell commmands, executed in sequence in the directory where
+the tarball is unpacked. (Use a fresh and empty directory for safety
+reasons.)
+
+    (1) ./configure
+    (2) make
+    (3) make install
+
+./configure is a script that checks whether your system is compatible
+for installation of OpenFCI. It checks if you have all the required
+libraries, if you have a C++ compiler, et.c.
+
+If you want the library and executables to be installed in a specific
+location, for example $HOME/openfci, use a call like this:
+
+    ./configure --prefix=$HOME/openfci
+
+This option will not take effect until you run 'make install'. (If
+'make' was successfull and you just want to select a different
+location to install, you may run ./configure again without rebuilding.)
+
+Running 'make' will compile everything in the source tree.
+
+
+About required libraries
+*************************
+
+The current version of OpenFCI requires the following libraries:
+
+ * LAPACK : For numerical linear algebra, i.e., SVD and eigenvalue
+   decomposition. LAPACK also depends on BLAS, so you will need to 
+   install BLAS as well, or use a LAPACK version with the needed
+   subset of BLAS functions compiled in. See http://www.netlib.org/
+   for more information on this.
+
+ * LPP : C++ interfcace to LAPACK. This is a header-only library, so
+   installation is trivial. See http://sourceforge.net/projects/lpp/
+   for more information.
+
+ * ARPACK : For iterative solvers for diagonalization of large, sparse
+   matrices. See http://www.netlib.org/ for more information. For
+   installation, I highly recommend _not_ using the download option
+   from NetLib, but rather the 'autotoolized' version by Andreas
+   Klöckner at the Brown University. Visit
+  
+      http://mathema.tician.de/software/arpack .
+
+   The installation procedure of ARPACK is then much simpler. In
+   addition, patches and bugfixes have been applied.
+
+ * Arpack++ : This is a C++ interface for ARPACK. It has a reputation
+   for being a nightmare to compile and build if you download it from
+   the official web page. But don't worry: If you are using Ubuntu,
+   then you may install it from the 'universe' respository. Other
+   recent Linux distros, such as new Debian and Red Hat distros,
+   should also be able to use this package, which similarly to ARPACK
+   is autotoolized and very easy to install. OpenFCI is tested with
+   arpack++_2.3 which can be downloaded at
+
+      http://launchpad.net/ubuntu/hardy/+srouce/arpack++/2.3-1
+
+   Note: If you install arpack++ by hand, make sure that all the
+   header files are located in a subdirectory 'arpack++' of whatever
+   header file destination you choose. 
+
+   I actually recomment skipping 'make install', and just copying the
+   library file 'src/.libs/libarpack++.a' to the desired library
+   directory and all the header files in 'include' to the desired
+   include directory _and put them in a sub-directory called
+   'arpack++'_.
+
+
+Locating required libraries on the system
+*****************************************
+
+If all the required libraries are already properly installed, there
+should be no need for special configuration. Just run
+
+    ./configure
+
+as described above to check whether this holds true; if not you will
+get an error message telling you if a library is missing.
+
+The best solution if a library is missing, is of course to properly
+install them. On the other hand, if you rather want to use a locally
+installed library (for example in some local location like
+$HOME/mylibs), you can assign proper values to LDFLAGS and/or CXXFLAGS
+on the command line as options to ./configure, so that ./configure
+will detect them, e.g.,
+
+    ./configure LDFLAGS="-L$HOME/mylibs" \
+        CXXFLAGS="-I$HOME/myincludes"
+
+Moreover, if you have library versions with different names
+(e.g., liblapack_Win32 instead of liblapack) you can give the
+following arguments to ./configure:
+
+    ./configure --with-lapack="-llapack_Win32"
+
+A similar option exists for ARPACK, i.e., --with-arpack.
+
+
+
+Turning debugging mode off
+**************************
+
+This release is probably not bug-free. Additionally, when you make
+your own programs you would like to recieve error messages when
+something goes wrong.
+
+Therefore, by default, debugging options '-g' are on when
+compiling. To turn off debugging, give the option --enable-nodebug to
+./configure. This additionally defines NDEBUG which turns off various
+error checking in the standard template libraries.
+
+The performance of OpenFCI is _much better_ when debugging is not
+enabled. 
+
+
+Setting the number of bits in a Slater determinant
+**************************************************
+
+The (maximum) number of bits in a Slater determinant is #defined in
+Slater.hpp, and defaults to 512 at the time of writing. This can be
+overridden by supplying --with-slater-bits=N, where N is the number of
+bits desired.
+
+Unfortunately, the Standard Template Library std::bitset<N> class
+template makes it impossible to dynamically select the number of bits,
+so it must be selected at compile-time. Overcoming this would mean a
+custom made bitset-class, or employing a third party class, such as
+Boost's dynamic_bitset. I will consider this for future versions.
+
+
+
+Post-build installation
+***********************
+
+After 'make' has successfully completed, the source tree contains
+binaries, libraries and header files scattered around. You will
+probably want to install them at a proper location. This is done by
+executing 'make install'. If you have not specified a --prefix=<dir>
+option to ./configure, this will be installed in the default location,
+like /local/include, /local/lib and /local/bin. If you run ./configure
+like
+
+    ./configure --prefix=$HOME/openfci
+
+the corresponding locations will be $HOME/openfci/include,
+$HOME/openfci/lib and $HOME/openfci/bin, respectively.
+
+
+Documentation
+*************
+
+At the root of the source tree is a file 'Doxyfile'. This is a
+configuration file for Doxygen, a tool for automatic documentation of
+source code, which is assumed to be documented by special
+comments. This can produce high-quality and detailed documentation if
+done carefully. By running 'doxygen' at the source root, it will process
+the source code and produce a folder 'html' containing all the
+extracted documentation. This documentation is also available on the
+web at all times, see
+
+    http://folk.uio.no/simenkva/openfci.shtml ,
+
+which also contains links to scientific papers (freely available from
+preprint servers) with description of the code and numerical methods
+involved.
+
+See also
+
+    http://www.doxygen.org
+
+for more information on Doxygen.
+
