@@ -1,5 +1,5 @@
 AC_INIT(src/manybody/Slater.hpp)
-AM_INIT_AUTOMAKE(openfci,0.6)
+AM_INIT_AUTOMAKE(openfci,0.6.1)
 dnl AC_CONFIG_HEADER(config.h)
 AC_PROG_CC
 AC_PROG_CXX
