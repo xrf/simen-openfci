@@ -3,6 +3,7 @@ AM_INIT_AUTOMAKE(openfci,0.6)
 dnl AC_CONFIG_HEADER(config.h)
 AC_PROG_CC
 AC_PROG_CXX
+AC_PROG_FC
 AC_PROG_INSTALL
 AC_PROG_LIBTOOL
 
@@ -20,10 +21,9 @@ AC_ARG_WITH(lapack,
 )
 if test X${USER_DEFINED_LAPACK} = Xno; then
 
-  AC_LANG_PUSH(Fortran 77)
-  AC_CHECK_LIB(lapack, dsyev, [LIBS="-llapack -lblas $LIBS"],
+  AC_FC_FUNC(dsyev)
+  AC_CHECK_LIB(lapack, $dsyev, [LIBS="-llapack -lblas $LIBS"],
     [AC_MSG_ERROR(You need the LAPACK library. See README.)])
-  AC_LANG_POP(Fortran 77)
 
 fi
 
@@ -43,10 +43,9 @@ AC_ARG_WITH(arpack,
     ]
 )
 if test X${USER_DEFINED_ARPACK} = Xno; then
-  AC_LANG_PUSH(Fortran 77)
-  AC_CHECK_LIB(arpack, dseigt, [LIBS="-larpack $LIBS"],
+  AC_FC_FUNC(dseigt)
+  AC_CHECK_LIB(arpack, $dseigt, [LIBS="-larpack $LIBS"],
     AC_MSG_ERROR(You need the ARPACK library. See README.))
-  AC_LANG_POP(Fortran 77)
 fi
 
 dnl
@@ -61,9 +60,10 @@ dnl AC_LANG_POP
 dnl
 dnl Check for LPP library
 dnl
-dnl AC_LANG_PUSH(C++)
-dnl sk_REQUIRE_HEADER([lpp/lapack.hh], [lpp::lower('X');])
-dnl AC_LANG_POP
+AC_LANG_PUSH(C++)
+AC_CHECK_HEADER([lpp/lapack.hh], [],
+  AC_MSG_ERROR(You need the LAPACK Plus Plus (LPP) library. See README.))
+AC_LANG_POP
 
 
 dnl
