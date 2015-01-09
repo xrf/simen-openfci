@@ -223,7 +223,7 @@ namespace manybody {
 
     // alpha and beta are used for pinpointing different orbitals,
     // p and q for their positions.
-    orbital_t alpha[2], beta[2], p[2], q[2];
+    orbital_t alpha[2], beta[2], p[2] = {}, q[2] = {};
     diff = phi_row.analyze_difference(phi_col, alpha, beta, p, q, 1);
 
     // bail out if too many occupied orbitals are different

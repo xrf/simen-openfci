@@ -64,12 +64,14 @@ namespace arpack {
 
 // Linkage names between C, C++, and Fortran (platform dependent)
 
+#ifndef F77NAME
 #if  defined(RIOS) && !defined(CLAPACK)
 #define F77NAME(x) x
 #else
 // #include <generic.h> 
 // #define F77NAME(x) name2(x,_)
 #define F77NAME(x) x ## _
+#endif
 #endif
 
 #if defined(SGI) && !defined(SGI_DEC)

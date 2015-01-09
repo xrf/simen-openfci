@@ -21,6 +21,7 @@
 //
 
 #include <cassert>
+#include <cstdlib>
 #include <vector>
 #include "Slater.hpp"
 

@@ -67,7 +67,7 @@
  ((__n) < 1 ? 0 : ((__n) + _GLIBCXX_BITSET_BITS_PER_WORD - 1) \
                   / _GLIBCXX_BITSET_BITS_PER_WORD)
 
-namespace _GLIBCXX_STD
+namespace std
 {
   /**
    *  @if maint

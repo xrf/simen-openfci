@@ -32,6 +32,7 @@
 
 #include <string>
 #include <sstream>
+#include <climits>
 #include <cmath>
 #include <vector>
 

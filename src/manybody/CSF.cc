@@ -20,7 +20,7 @@
 #include <sstream>
 #include "CSF.hpp"
 #include "tools.hpp"
-#include "lpp/lapack.hh"
+#include <lpp/lapack.hh>
 #include "NChooseK.hpp"
 
 

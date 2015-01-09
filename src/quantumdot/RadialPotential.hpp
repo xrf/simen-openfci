@@ -21,6 +21,7 @@
 //
 
 
+#include <cstdlib>
 #include <vector>
 #include "linalg.hpp"
 
@@ -126,6 +127,7 @@ namespace quantumdot
 	using namespace std;
 	os << "Potential:" << endl;
 	os << "  r^(-"<<alpha<<")*p(r)*exp(-r*"<<beta<<")"<<endl;
+	return os;
       }
 
 

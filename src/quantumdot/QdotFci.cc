@@ -237,7 +237,7 @@ namespace quantumdot {
 
     // Multiply eigenvalues with omega and add angular momentum
     // dependent shift.
-    for (size_t k = 1; k<=eigenvalues.length(); ++k)
+    for (size_t k = 1; k<=static_cast<size_t>(eigenvalues.length()); ++k)
       eigenvalues(k) = eigenvalues(k)*omega - 0.5*B*M;
 
 

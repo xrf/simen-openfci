@@ -91,7 +91,7 @@ namespace simple_dense {
 
     public:
       /// \brief Default constructor
-      simple_vector() : length_(0), data_(0) { }
+      simple_vector() : data_(0), length_(0) { }
 
       /// \brief Constructur that allocates memory (if OWNS = true)
       /// \brief length     Length of vector
@@ -182,6 +182,7 @@ namespace simple_dense {
       {
 	this->resize(src.length());
 	copy2(data_.begin(), src.data_.begin(), length_);
+	return(*this);
       }
 
       

@@ -139,12 +139,9 @@ ostream& operator<<(ostream& os, std::vector<T>& x)
 void initPotential(RadialPotential& potential, const ConfigFile& config)
 {
 
-  double alpha;
-  double beta;
+  double alpha = 0;
   std::vector<double> p, p_default;
   bool p_iseven;
-  RadialPotential::quad_enum quad_type;
-  RadialPotential::basis_enum basis_type;
 
   p_default.push_back(1.0);
 

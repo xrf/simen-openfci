@@ -131,7 +131,7 @@ int main()
   else
   {
     cerr << "I found " << d << " different occupied orbitals." << endl;
-    for (size_t k = 0; k < d; ++k)
+    for (size_t k = 0; k < static_cast<size_t>(d); ++k)
     {
       cerr << "alpha[" << k << "] = " << alpha[k] << ", p[" << k << "] = " << p[k] << endl;
       cerr << "beta[" << k << "]  = " << beta[k]  << ", q[" << k << "] = " << q[k] << endl;

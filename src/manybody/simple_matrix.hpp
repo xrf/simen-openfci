@@ -51,7 +51,7 @@ namespace simple_dense {
 
     public:
       /// Default constructor. Simple initialization.
-      simple_matrix() : nrows_(0), ncols_(0), ld_(0), data_(0),
+      simple_matrix() : data_(0), nrows_(0), ncols_(0), ld_(0),
 			active_rows_(), active_cols_(), use_block_(false) { }
 
       /// Constructor that allocates memory for matrix.
@@ -89,7 +89,7 @@ namespace simple_dense {
 	assert( (row>=1) && (row <= nrows_) );
 	assert( (col>=1) && (col <= ncols_) );
 	const index_t index = ld_*(col-1) + (row-1);
-	assert( index < data_.size() );
+	assert( static_cast<typename std::vector<T>::size_type>(index) < data_.size() );
 	return data_.begin() + index;
 	
       }
@@ -102,7 +102,7 @@ namespace simple_dense {
 	assert( (row>=1) && (row <= nrows_) );
 	assert( (col>=1) && (col <= ncols_) );
 	const index_t index = ld_*(col-1) + (row-1);
-	assert( index < data_.size() );
+	assert( static_cast<typename std::vector<T>::size_type>(index) < data_.size() );
 	return data_.begin() + index;
 	
       }
@@ -134,7 +134,7 @@ namespace simple_dense {
 	else
 	  ld_ = ld;
 
-	if ( data_.size() != ld_ * ncols_ )
+	if ( data_.size() != static_cast<typename std::vector<T>::size_type>(ld_ * ncols_) )
 	  data_.resize(ld_ * ncols_);
       }
 
@@ -165,6 +165,7 @@ namespace simple_dense {
 	  for (index_t k = 0; k < nrows_; ++k)
 	    *(first + k) *= factor;
 	} 
+	return *this;
 
       }
       
@@ -212,6 +213,7 @@ namespace simple_dense {
 	this->use_block_ = src.use_block_;
 	this->active_cols_ = src.active_cols_;
 	this->active_rows_ = src.active_rows_;
+	return *this;
 
       }
 

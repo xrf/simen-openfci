@@ -370,8 +370,8 @@ int main(int argc, char **argv)
   try
   {
     ConfigFile config(configname);
-    double gee = config.read<double>("g", 0.25);
-    double eff = config.read<double>("f", 0.25);
+    config.read<double>("g", 0.25);
+    config.read<double>("f", 0.25);
     int levels = config.read<int>("levels", 10);
     int P_levels = config.read<int>("P_levels", 3);
     int particles = config.read<int>("particles", 4);

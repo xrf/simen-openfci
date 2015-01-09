@@ -141,7 +141,6 @@ namespace quantumdot {
     {
 
       // increment angmoms until we have a legal value
-      bool non_incr = false;
       bool bad_combo = false;
       while ( (abs(m[A-1]) > mmax) || bad_combo)
       {
