@@ -29,8 +29,8 @@
 #include "QdotMatrixElements.hpp"
 #include "RadialPotential.hpp"
 
-#include "CSF.hpp"
-#include "tools.hpp"
+#include "../manybody/CSF.hpp"
+#include "../manybody/tools.hpp"
 
 
 /**

@@ -23,7 +23,7 @@
 #include <cassert>
 #include <cstdlib>
 #include <vector>
-#include "Slater.hpp"
+#include "../manybody/Slater.hpp"
 
 /**
  * \file QdotHilbertSpace.hpp

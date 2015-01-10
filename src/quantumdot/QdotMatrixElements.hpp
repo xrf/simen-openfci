@@ -21,7 +21,7 @@
 //
 
 
-#include "Slater.hpp"
+#include "../manybody/Slater.hpp"
 
 /**
  * \file QdotMatrixElements.hpp

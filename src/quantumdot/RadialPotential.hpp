@@ -23,7 +23,7 @@
 
 #include <cstdlib>
 #include <vector>
-#include "linalg.hpp"
+#include "../manybody/linalg.hpp"
 
 namespace quantumdot
 {

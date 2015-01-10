@@ -23,8 +23,8 @@
 
 #include <cassert>
 
-#include "linalg.hpp"
-#include "sparse.hpp"
+#include "../manybody/linalg.hpp"
+#include "../manybody/sparse.hpp"
 #include "RadialPotential.hpp"
 
 /**
