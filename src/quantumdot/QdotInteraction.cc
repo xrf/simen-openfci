@@ -19,8 +19,8 @@
 
 
 #include "QdotInteraction.hpp"
-#include "gauss_tools.hpp"
-#include "tools.hpp"
+#include "../manybody/gauss_tools.hpp"
+#include "../manybody/tools.hpp"
 
 /*
  * Implementation of matrix elements for the quantum dot, plus various helper functions.

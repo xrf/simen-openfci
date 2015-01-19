@@ -22,8 +22,8 @@
 //#include "arpack++/arssym.h"
 #include "../arpack/arpack.hpp"
 
-#include "MatrixMachine.hpp"
-#include "timer.hpp"
+#include "../manybody/MatrixMachine.hpp"
+#include "../manybody/timer.hpp"
 
 
 using namespace std;

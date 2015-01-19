@@ -18,8 +18,8 @@
 //
 
 #include "RadialPotential.hpp"
-#include "gauss_tools.hpp"
-#include "tools.hpp"
+#include "../manybody/gauss_tools.hpp"
+#include "../manybody/tools.hpp"
 
 using namespace gauss;
 

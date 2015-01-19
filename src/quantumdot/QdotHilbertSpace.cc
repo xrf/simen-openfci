@@ -19,10 +19,10 @@
 
 #include "QdotHilbertSpace.hpp"
 
-#include "timer.hpp"
-#include "NChooseK.hpp"
-#include "NChooseKBitset.hpp"
-#include "tools.hpp"
+#include "../manybody/timer.hpp"
+#include "../manybody/NChooseK.hpp"
+#include "../manybody/NChooseKBitset.hpp"
+#include "../manybody/tools.hpp"
 
 namespace quantumdot {
 
