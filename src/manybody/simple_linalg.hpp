@@ -23,7 +23,7 @@
 
 #include "simple_matrix.hpp"
 #include "simple_vector.hpp"
-#include "lpp/lapack.hh"
+#include <lpp/lapack.hh>
 
 namespace simple_dense {
 

@@ -19,9 +19,9 @@ AC_ARG_WITH(lapack,
     USER_DEFINED_LAPACK=yes
     ]
 )
+AC_FC_FUNC(dsyev)
 if test X${USER_DEFINED_LAPACK} = Xno; then
 
-  AC_FC_FUNC(dsyev)
   AC_CHECK_LIB(lapack, $dsyev, [LIBS="-llapack -lblas $LIBS"],
     [AC_MSG_ERROR(You need the LAPACK library. See README.)])
 
@@ -42,8 +42,8 @@ AC_ARG_WITH(arpack,
     USER_DEFINED_ARPACK=yes
     ]
 )
+AC_FC_FUNC(dseigt)
 if test X${USER_DEFINED_ARPACK} = Xno; then
-  AC_FC_FUNC(dseigt)
   AC_CHECK_LIB(arpack, $dseigt, [LIBS="-larpack $LIBS"],
     AC_MSG_ERROR(You need the ARPACK library. See README.))
 fi
